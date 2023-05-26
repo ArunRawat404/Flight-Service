@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A basic starter boilerplate project for node",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "npx nodemon src/index.js"
+  },
   "author": "Arun Rawat",
   "license": "ISC",
   "dependencies": {
