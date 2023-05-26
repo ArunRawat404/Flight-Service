@@ -23,3 +23,46 @@ Now, let's take a closer look inside the `src` folder:
 - `services`: Services handle the business logic and interact with repositories to fetch data from the database.
 
 - `utils`: The `utils` folder contains helper methods, error classes, and other utility functions.
+
+## Project Setup
+
+To set up the project, follow these steps:
+
+1. Download this template from GitHub and open it in your favorite text editor.
+2. Navigate to the project's folder path in the command line and execute the following command:
+
+   ```
+   npm install
+   ```
+
+3. In the root directory, create a `.env` file and add the required environment variables. For example:
+
+   ```
+   PORT=<port number of your choice>
+   ```
+
+- E.g
+
+  ```
+  PORT=3000
+  ```
+
+4. Go inside the `src` folder and execute the following command:
+
+   ```
+   npx sequelize init
+   ```
+
+By executing the above command you will generate `migrations` and `seeders` folders, along with a `config.json` file inside the `config` folder.
+
+5. If you're setting up your development environment, write the username and password of your database in the `config.json` file. Also, specify the dialect of your database (e.g., mysql, mariadb).
+
+6. If you're setting up the test or production environment, make sure to replace the host with the URL of the hosted database.
+
+7. To run the server, execute the following command:
+
+   ```
+   npm run dev
+   ```
+
+Feel free to modify the project according to your specific requirements.
