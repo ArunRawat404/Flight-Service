@@ -1,6 +1,7 @@
 .env
 .env-development
 .env-production
+src/config/config.json
 
 # Logs
 logs
