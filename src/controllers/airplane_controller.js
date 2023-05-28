@@ -27,7 +27,7 @@ async function createAirplane(req, res) {
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
             .json({
-                success: true,
+                success: false,
                 message: 'Something went wrong while creating airplane',
                 data: {},
                 error: error

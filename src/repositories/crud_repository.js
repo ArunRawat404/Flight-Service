@@ -39,7 +39,7 @@ class CrudRepository {
             const response = await this.model.findByPk(data);
             return response;
         } catch (error) {
-            Logger.error("Something went wrong in CRUD Repo: destroy");
+            Logger.error("Something went wrong in CRUD Repo: get");
             throw error;
         }
     }
@@ -50,7 +50,7 @@ class CrudRepository {
             const response = await this.model.findAll();
             return response;
         } catch (error) {
-            Logger.error("Something went wrong in CRUD Repo: destroy");
+            Logger.error("Something went wrong in CRUD Repo: getAll");
             throw error;
         }
     }
@@ -65,7 +65,7 @@ class CrudRepository {
             });
             return response;
         } catch (error) {
-            Logger.error("Something went wrong in CRUD Repo: destroy");
+            Logger.error("Something went wrong in CRUD Repo: update");
             throw error;
         }
     }
