@@ -19,13 +19,11 @@ async function createAirplane(req, res) {
             capacity: req.body.capacity
         });
         SuccessResponse.data = airplane;
-        console.log(SuccessResponse)
         return res.status(StatusCodes.CREATED)
             .json(SuccessResponse);
-
     } catch (error) {
         ErrorResponse.error = error;
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
+        return res.status(error.statusCode)
             .json(ErrorResponse);
     }
 }
