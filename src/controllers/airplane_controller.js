@@ -1,16 +1,16 @@
 // Controllers interact with the service and structure the output response
 
-/*
-method: POST request 
-URL: /airplanes
-data: req.body: {modelNumber: 'airbus320', capacity: 200}
-*/
-
 const { StatusCodes } = require("http-status-codes");
 
 const { AirplaneService } = require('../services');
 
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
+
+/*
+method: POST request 
+URL: /airplanes
+data: req.body: {modelNumber: 'airbus320', capacity: 200}
+*/
 
 async function createAirplane(req, res) {
     try {

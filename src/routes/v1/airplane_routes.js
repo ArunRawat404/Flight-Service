@@ -9,23 +9,23 @@ const router = express.Router();
 // POST req on /api/v1/airplanes, will first validate the request using AirplaneMiddlewares.validateCreateRequest and then create airplane using AirplaneController.createAirplane
 router.post('/',
     AirplaneMiddlewares.validateCreateRequest,
-    AirplaneController.createAirplane)
+    AirplaneController.createAirplane);
 
 // GET req on /api/v1/airplanes
 router.get('/',
-    AirplaneController.getAirplanes)
+    AirplaneController.getAirplanes);
 
 // GET req on /api/v1/airplanes/:id
 router.get('/:id',
-    AirplaneController.getAirplane)
+    AirplaneController.getAirplane);
 
 // DELETE req on /api/v1/airplanes/:id
 router.delete('/:id',
-    AirplaneController.destroyAirplane)
+    AirplaneController.destroyAirplane);
 
 // PATCH req on /api/v1/airplanes/:id
 router.patch('/:id',
     AirplaneMiddlewares.validateUpdateRequest,
-    AirplaneController.updateAirplane)
+    AirplaneController.updateAirplane);
 
 module.exports = router; 
