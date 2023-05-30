@@ -15,4 +15,9 @@ router.post("/",
 router.delete("/:id",
     CityController.destroyCity);
 
+// PATCH req on /api/v1/airplanes/:id
+router.patch("/:id",
+    CityMiddlewares.validateUpdateRequest,
+    CityController.updateCity);
+
 module.exports = router; 

@@ -35,7 +35,27 @@ async function destroyCity(id) {
     }
 }
 
+async function updateCity(id, data) {
+    try {
+        const response = await cityRepository.update(data, id);
+        return response;
+    } catch (error) {
+        if (error.statusCode == StatusCodes.NOT_FOUND) {
+            throw new AppError("The city you requested to update is not present", error.statusCode);
+        } else if (error.name == "SequelizeValidationError") {
+            let explanation = [];
+            error.errors.forEach((err) => {
+                explanation.push(err.message);
+            });
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
+        }
+        throw new AppError("Cannot update the city data", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+
 module.exports = {
     createCity,
-    destroyCity
+    destroyCity,
+    updateCity
 };
