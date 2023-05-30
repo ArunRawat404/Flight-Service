@@ -2,14 +2,14 @@
 
 const { StatusCodes } = require("http-status-codes");
 
-const { AirplaneService } = require('../services');
+const { AirplaneService } = require("../services");
 
-const { SuccessResponse, ErrorResponse } = require('../utils/common');
+const { SuccessResponse, ErrorResponse } = require("../utils/common");
 
 /*
 method: POST request 
 URL: /airplanes
-data: req.body: {modelNumber: 'airbus320', capacity: 200}
+data: req.body: {modelNumber: "airbus320", capacity: 200}
 */
 
 async function createAirplane(req, res) {

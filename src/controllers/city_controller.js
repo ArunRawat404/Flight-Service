@@ -1,14 +1,14 @@
 const { StatusCodes } = require("http-status-codes");
 
-const { CityService } = require('../services');
+const { CityService } = require("../services");
 
-const { SuccessResponse, ErrorResponse } = require('../utils/common');
+const { SuccessResponse, ErrorResponse } = require("../utils/common");
 
 
 /*
 method: POST request 
 URL: /cities
-data: req.body: {name: 'Delhi'}
+data: req.body: {name: "Delhi"}
 */
 
 async function createCity(req, res) {
@@ -26,7 +26,26 @@ async function createCity(req, res) {
     }
 }
 
+/*
+method: DELETE request 
+URL: /cities/:id
+data: req.body: {}
+*/
+
+async function destroyCity(req, res) {
+    try {
+        const response = await CityService.destroyCity(req.params.id);
+        SuccessResponse.data = response;
+        return res.status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(error.statusCode)
+            .json(ErrorResponse);
+    }
+}
 
 module.exports = {
-    createCity
+    createCity,
+    destroyCity
 }
