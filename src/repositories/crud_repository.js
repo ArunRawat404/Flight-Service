@@ -23,6 +23,7 @@ class CrudRepository {
             }
         });
         // We will throw an error if we are unable to find a response
+        console.log(response);
         if (!response) {
             throw new AppError("Not able to find the resource", StatusCodes.NOT_FOUND);
         }
@@ -53,6 +54,9 @@ class CrudRepository {
                 id: id
             }
         });
+        if (response[0] == 0) {
+            throw new AppError("Not able to update the resource", StatusCodes.NOT_FOUND);
+        }
         return response;
     }
 }
