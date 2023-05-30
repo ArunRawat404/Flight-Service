@@ -1,6 +1,8 @@
 // Controllers don't directly talk to models. Services have business logic, so they don't directly talk to models. Repository talks to models.
 
-const { Logger } = require('../config/')
+const { StatusCodes } = require("http-status-codes");
+
+const AppError = require("../utils/errors/app_error");
 
 class CrudRepository {
     constructor(model) {
@@ -26,6 +28,9 @@ class CrudRepository {
     // Find query based on Primary Key
     async get(data) {
         const response = await this.model.findByPk(data);
+        if (!response) {
+            throw new AppError("Not able to find the resource", StatusCodes.NOT_FOUND);
+        }
         return response;
     }
 
