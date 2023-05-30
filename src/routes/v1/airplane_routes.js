@@ -19,4 +19,8 @@ router.get('/',
 router.get('/:id',
     AirplaneController.getAirplane)
 
+// DELETE req on /api/v1/airplanes/:id
+router.delete('/:id',
+    AirplaneController.destroyAirplane)
+
 module.exports = router; 
