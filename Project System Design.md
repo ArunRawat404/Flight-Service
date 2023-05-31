@@ -25,8 +25,6 @@ By considering these non-functional requirements, the system can ensure it meets
 
 ## Non-Functional Requirements of the Project:
 
-## Non-Functional Requirements of the Project:
-
 1. User Interface and Search Functionality:
 
    - The system should prioritize providing efficient flight search capabilities over the booking process due to the higher frequency of flight searches compared to actual bookings.
