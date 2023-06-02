@@ -6,6 +6,7 @@ const { FlightRepository } = require("../repositories");
 
 const AppError = require("../utils/errors/app_error");
 
+
 const flightRepository = new FlightRepository();
 
 async function createFlight(data) {

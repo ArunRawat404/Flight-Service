@@ -2,6 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 
 const { ErrorResponse } = require("../utils/common");
 const AppError = require("../utils/errors/app_error");
+const compareTime = require("../utils/helpers/datetime_helper")
 
 function validateCreateRequest(req, res, next) {
     if (!req.body.flightNumber) {
@@ -49,6 +50,14 @@ function validateCreateRequest(req, res, next) {
     if (!req.body.totalSeats) {
         ErrorResponse.message = "Something went wrong while creating flight";
         ErrorResponse.error = new AppError(["Total Seats not found in the incoming request in correct form"], StatusCodes.BAD_REQUEST)
+        return res.status(StatusCodes.BAD_REQUEST)
+            .json(ErrorResponse);
+    };
+
+    // Checking if departure time is earlier than arrival time
+    if (compareTime(req.body.departureTime, req.body.arrivalTime)) {
+        ErrorResponse.message = "Something went wrong while creating flight";
+        ErrorResponse.error = new AppError(["Departure time cannot be later than arrival time"], StatusCodes.BAD_REQUEST)
         return res.status(StatusCodes.BAD_REQUEST)
             .json(ErrorResponse);
     };
