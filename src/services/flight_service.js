@@ -27,7 +27,9 @@ async function createFlight(data) {
 
 async function getAllFlights(query) {
     let customFilter = {};
-    // trips=MUM-DEL
+    let sortFilter = [];
+    const endingTripTime = " 23:59:00";
+    // trips=Source-Destination | eg. BLR-DEL
     if (query.trips) {
         [departureAirportId, arrivalAirportId] = query.trips.split("-");
         customFilter.departureAirportId = departureAirportId;
@@ -41,8 +43,28 @@ async function getAllFlights(query) {
             [Op.between]: [minPrice, (maxPrice == undefined) ? minPrice : maxPrice]
         }
     }
+    // The available no. of seats should be equal to the number of travelers expected or greater than that
+    if (query.travelers) {
+        customFilter.totalSeats = {
+            [Op.gte]: query.travelers
+        }
+    }
+    // Display all flights on a particular date
+    if (query.tripDate) {
+        customFilter.departureTime = {
+            [Op.between]: [query.tripDate, query.tripDate + endingTripTime]
+        }
+    }
+    if (query.sort) {
+        const params = query.sort.split(",");
+        // [ 'price', 'DESC' ], [ 'departureTime', 'ASC' ] 
+        const sortFilters = params.map((param) => param.split("_"));
+        // put it inside an array -> [ [ 'price', 'DESC' ], [ 'departureTime', 'ASC' ] ]
+        sortFilter = sortFilters
+    }
+
     try {
-        const flights = await flightRepository.getAllFlights(customFilter);
+        const flights = await flightRepository.getAllFlights(customFilter, sortFilter);
         return flights;
     } catch (error) {
         throw new AppError("Cannot fetch data of all the flights", StatusCodes.INTERNAL_SERVER_ERROR);
