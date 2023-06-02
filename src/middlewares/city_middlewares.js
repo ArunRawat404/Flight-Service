@@ -16,7 +16,7 @@ function validateCreateRequest(req, res, next) {
 function validateUpdateRequest(req, res, next) {
     if (!req.body.name) {
         ErrorResponse.message = "Something went wrong while updating city";
-        ErrorResponse.error = new AppError(["Data not given for updating"], StatusCodes.BAD_REQUEST)
+        ErrorResponse.error = new AppError(["Name not given for updating"], StatusCodes.BAD_REQUEST)
         return res.status(StatusCodes.BAD_REQUEST)
             .json(ErrorResponse);
     }

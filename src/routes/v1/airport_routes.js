@@ -24,9 +24,9 @@ router.delete("/:id",
     AirportController.destroyAirport);
 
 // PATCH req on /api/v1/airports/:id
-// router.patch("/:id",
-//     AirportMiddlewares.validateUpdateRequest,
-//     AirportController.updateAirport);
+router.patch("/:id",
+    AirportMiddlewares.validateUpdateRequest,
+    AirportController.updateAirport);
 
 module.exports = router;
 
