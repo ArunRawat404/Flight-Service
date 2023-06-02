@@ -6,7 +6,7 @@ const { AirportMiddlewares } = require("../../middlewares");
 
 const router = express.Router();
 
-// POST req on /api/v1/airports, will first validate the request using AirplaneMiddlewares.validateCreateRequest and then create airplane using AirplaneController.createAirplane
+// POST req on /api/v1/airports
 router.post("/",
     AirportMiddlewares.validateCreateRequest,
     AirportController.createAirport);
