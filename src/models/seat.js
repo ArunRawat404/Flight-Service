@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const { Enums } = require("../utils/common")
+const { Enums } = require("../utils/common");
 const { BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS } = Enums.SEAT_TYPE;
 
 module.exports = (sequelize, DataTypes) => {
@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Airplane, {
+        foreignKey: "airplaneId",
+      });
     }
   }
   Seat.init({
@@ -32,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     type: {
       type: DataTypes.ENUM,
-      value: [BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS],
+      values: [BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS],
       defaultValue: ECONOMY,
       allowNull: false
     },
