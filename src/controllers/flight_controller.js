@@ -102,7 +102,6 @@ async function updateSeats(req, res) {
         return res.status(StatusCodes.OK)
             .json(SuccessResponse);
     } catch (error) {
-        console.log(error)
         ErrorResponse.error = error;
         return res.status(error.statusCode)
             .json(ErrorResponse);
